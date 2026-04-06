@@ -1,0 +1,4047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programming Practice Projects</title>
+<style>
+    /* ----- CSS ----- */
+    body { font-family: Arial, sans-serif; background-color: #f5f5f5; margin: 0; padding: 0; }
+    header { background-color: #007bff; color: white; padding: 15px; text-align: center; position: sticky; top: 0; z-index: 1000; }
+    header h1 { margin: 0; }
+    nav { margin-top: 10px; text-align: center; display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; }
+    
+    nav button {
+        padding: 10px 15px;
+        font-size: 13px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #ffffff;
+        color: #007bff;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    nav button:hover, nav button.active { background-color: #0056b3; color: white; }
+    
+    main { padding: 20px; max-width: 1000px; margin: auto; }
+    .category { display: none; margin-bottom: 20px; }
+    .category.active { display: block; }
+
+    .program {
+        background-color: white;
+        border: 1px solid #ddd;
+        padding: 20px;
+        margin-bottom: 25px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    h2 { color: #007bff; border-bottom: 2px solid #007bff; padding-bottom: 5px; }
+    pre { background-color: #272822; color: #f8f8f2; padding: 15px; overflow-x: auto; border-radius: 5px; }
+    .output { margin-top: 10px; background-color: #e2f0d9; padding: 12px; border-left: 5px solid #28a745; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Programming Practice Projects</h1>
+    <nav>
+        <button onclick="showCategory('intro')" id="btn-intro">INTRO</button>
+        <button onclick="showCategory('arrays')" id="btn-arrays">Array</button>
+        <button onclick="showCategory('strings')" id="btn-strings">String</button>
+        <button onclick="showCategory('functions')" id="btn-functions">Function</button>
+        <button onclick="showCategory('conversion')" id="btn-conversion">Conversion</button>
+        <button onclick="showCategory('oop')" id="btn-oop">OOP</button>
+        <button onclick="showCategory('overload')" id="btn-overload">Operator Overload</button>
+        <button onclick="showCategory('virtual')" id="btn-virtual">Virtual</button>
+        <button onclick="showCategory('inheritance')" id="btn-inheritance">Inheritance</button>
+        <button onclick="showCategory('file')" id="btn-file">File Handling</button>
+    </nav>
+</header>
+  <div class="category" id="intro">
+       <h1><b>welcome to my website</b></h1><br>
+       <h2><b><i>this is my website</i></b></h2><br>
+       <h2><b><i>my roll_numeber is 4263/25</i></b></h2><br>
+       </div>
+    </div>
+
+
+
+
+
+<main id="program-container">
+ <div class="category" id="arrays">
+        <h2>Array Questions</h2>
+        <div class="program">
+            <h3>Q1: Largest Element</h3>
+            <pre>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int arr[] = {10, 20, 5, 40};
+    int max = arr[0];
+    for(int i=1; i<4; i++) if(arr[i]>max) max=arr[i];
+    cout << max;
+    return 0;
+}</pre>
+            <div class="output">Output: 40</div>
+
+            <h3>ques2: Program to find the frequency of each element in the array</h3>
+
+<pre>
+#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[100], n, freq[100];
+
+    cout << "Enter number of elements: ";
+    cin >> n;
+
+    cout << "Enter array elements: ";
+    for(int i = 0; i < n; i++) {
+        cin >> arr[i];
+        freq[i] = -1;
+    }
+
+    for(int i = 0; i < n; i++) {
+        int count = 1;
+        if(freq[i] == 0)
+            continue;
+
+        for(int j = i + 1; j < n; j++) {
+            if(arr[i] == arr[j]) {
+                count++;
+                freq[j] = 0;
+            }
+        }
+        freq[i] = count;
+    }
+
+    cout << "Frequency of each element:\n";
+    for(int i = 0; i < n; i++) {
+        if(freq[i] != 0) {
+            cout << arr[i] << " occurs " << freq[i] << " times\n";
+        }
+    }
+
+    return 0;
+}
+</pre>
+
+<div class="output">
+Input: 5 <br>
+1 2 2 3 1 <br>
+Output: <br>
+1 occurs 2 times <br>
+2 occurs 2 times <br>
+3 occurs 1 times
+</div>
+<h3>ques3: Program to left rotate the elements of an array</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, temp;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+temp = arr[0];
+for(int i = 0; i < n-1; i++) arr[i] = arr[i+1];
+arr[n-1] = temp;
+
+for(int i = 0; i < n; i++) cout << arr[i] << " ";
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 5 1 2 3 4 5 Output: 2 3 4 5 1 </div>
+<h3>ques4: Program to print the duplicate elements of an array</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+for(int i = 0; i < n; i++) {
+    for(int j = i+1; j < n; j++) {
+        if(arr[i] == arr[j]) {
+            cout << arr[j] << " ";
+            break;
+        }
+    }
+}
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 5 1 2 3 2 1 Output: 2 1 </div>
+<h3>ques5: Program to print the elements of an array</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+for(int i = 0; i < n; i++) cout << arr[i] << " ";
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 3 5 6 7 Output: 5 6 7 </div>
+<h3>ques6: Program to print the elements of an array in reverse order</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+for(int i = n-1; i >= 0; i--) cout << arr[i] << " ";
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 4 1 2 3 4 Output: 4 3 2 1 </div>
+<h3>ques7: Program to print elements at even position</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+for(int i = 1; i < n; i += 2) cout << arr[i] << " ";
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 5 10 20 30 40 50 Output: 20 40 </div>
+<h3>ques8: Program to print elements at odd position</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+for(int i = 0; i < n; i += 2) cout << arr[i] << " ";
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 5 10 20 30 40 50 Output: 10 30 50 </div>
+<h3>ques9: Program to print largest element in an array</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, max;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+max = arr[0];
+for(int i = 1; i < n; i++) if(arr[i] > max) max = arr[i];
+
+cout << max;
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 4 3 9 1 6 Output: 9 </div>
+<h3>ques10: Program to print smallest element in an array</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, min;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+min = arr[0];
+for(int i = 1; i < n; i++) if(arr[i] < min) min = arr[i];
+
+cout << min;
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 4 3 9 1 6 Output: 1 </div>
+<h3>ques11: Program to print the number of elements present in an array</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int n;
+cin >> n;
+cout << n;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: 5 Output: 5 </div>
+<h3>ques12: Program to print the sum of all the items of the array</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, sum = 0;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+for(int i = 0; i < n; i++) sum += arr[i];
+cout << sum;
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 4 1 2 3 4 Output: 10 </div>
+<h3>ques13: Program to right rotate the elements of an array</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, temp;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+temp = arr[n-1];
+for(int i = n-1; i > 0; i--) arr[i] = arr[i-1];
+arr[0] = temp;
+
+for(int i = 0; i < n; i++) cout << arr[i] << " ";
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 5 1 2 3 4 5 Output: 5 1 2 3 4 </div>
+<h3>ques14: Program to sort the elements of an array in ascending order</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, temp;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+for(int i = 0; i < n-1; i++) {
+    for(int j = i+1; j < n; j++) {
+        if(arr[i] > arr[j]) {
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+}
+
+for(int i = 0; i < n; i++) cout << arr[i] << " ";
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 5 4 2 5 1 3 Output: 1 2 3 4 5 </div>
+<h3>ques15: Program to sort the elements of an array in descending order</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, temp;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+for(int i = 0; i < n-1; i++) {
+    for(int j = i+1; j < n; j++) {
+        if(arr[i] < arr[j]) {
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+}
+
+for(int i = 0; i < n; i++) cout << arr[i] << " ";
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 5 4 2 5 1 3 Output: 5 4 3 2 1 </div>
+<h3>ques16: Program to find 3rd largest number in an array</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, temp;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+for(int i = 0; i < n-1; i++) {
+    for(int j = i+1; j < n; j++) {
+        if(arr[i] < arr[j]) {
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+}
+
+cout << arr[2];
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 5 10 20 30 40 50 Output: 30 </div>
+<h3>ques17: Program to find 2nd largest number in an array</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, temp;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+for(int i = 0; i < n-1; i++) {
+    for(int j = i+1; j < n; j++) {
+        if(arr[i] < arr[j]) {
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+}
+
+cout << arr[1];
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 5 10 20 30 40 50 Output: 40 </div>
+<h3>ques18: Program to find largest number in an array</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, max;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+max = arr[0];
+for(int i = 1; i < n; i++) if(arr[i] > max) max = arr[i];
+
+cout << max;
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 5 10 20 30 40 50 Output: 50 </div>
+<h3>ques19: Program to find 2nd smallest number in an array</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, temp;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+for(int i = 0; i < n-1; i++) {
+    for(int j = i+1; j < n; j++) {
+        if(arr[i] > arr[j]) {
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+}
+
+cout << arr[1];
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 5 50 20 10 40 30 Output: 20 </div>
+<h3>ques20: Program to find smallest number in an array</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, min;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+min = arr[0];
+for(int i = 1; i < n; i++) if(arr[i] < min) min = arr[i];
+
+cout << min;
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 5 50 20 10 40 30 Output: 10 </div>
+<h3>ques21: Program to remove duplicate element in an array</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, res[100], k = 0;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+for(int i = 0; i < n; i++) {
+    bool duplicate = false;
+    for(int j = 0; j < k; j++) {
+        if(arr[i] == res[j]) {
+            duplicate = true;
+            break;
+        }
+    }
+    if(!duplicate) res[k++] = arr[i];
+}
+
+for(int i = 0; i < k; i++) cout << res[i] << " ";
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 6 1 2 2 3 4 3 Output: 1 2 3 4 </div>
+<h3>ques22: Program to print odd and even numbers from an array</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+cout << "Even: ";
+for(int i = 0; i < n; i++) if(arr[i] % 2 == 0) cout << arr[i] << " ";
+
+cout << "\nOdd: ";
+for(int i = 0; i < n; i++) if(arr[i] % 2 != 0) cout << arr[i] << " ";
+
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 5 1 2 3 4 5 Output: Even: 2 4 Odd: 1 3 5 </div>
+<h3>ques23: Program to swap first and last elements of an array and create a new array</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], newArr[100], n;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+for(int i = 0; i < n; i++) newArr[i] = arr[i];
+int temp = newArr[0];
+newArr[0] = newArr[n-1];
+newArr[n-1] = temp;
+
+for(int i = 0; i < n; i++) cout << newArr[i] << " ";
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 5 1 2 3 4 5 Output: 5 2 3 4 1 </div>
+<h3>ques24: Program to count the number of even and odd elements in a given array</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, even = 0, odd = 0;
+cin >> n;
+for(int i = 0; i < n; i++) {
+cin >> arr[i];
+if(arr[i] % 2 == 0) even++;
+else odd++;
+}
+
+cout << "Even: " << even << "\nOdd: " << odd;
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 5 1 2 3 4 5 Output: Even: 2 Odd: 3 </div>
+<h3>ques25: Program to sum values of an array</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, sum = 0;
+cin >> n;
+for(int i = 0; i < n; i++) {
+cin >> arr[i];
+sum += arr[i];
+}
+
+cout << sum;
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 4 1 2 3 4 Output: 10 </div>
+<h3>ques26: Program to find the index of an array element</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, key, index = -1;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+cin >> key;
+
+for(int i = 0; i < n; i++) if(arr[i] == key) { index = i; break; }
+
+cout << index;
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 5 10 20 30 40 50 30 Output: 2 </div>
+<h3>ques27: Program to calculate the average value of array elements</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n;
+float sum = 0;
+cin >> n;
+for(int i = 0; i < n; i++) {
+cin >> arr[i];
+sum += arr[i];
+}
+
+cout << sum / n;
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 4 2 4 6 8 Output: 5 </div>
+<h3>ques28: Program to test if an array contains a specific value</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, key;
+bool found = false;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+cin >> key;
+
+for(int i = 0; i < n; i++) if(arr[i] == key) found = true;
+
+if(found) cout << "Yes";
+else cout << "No";
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 5 10 20 30 40 50 30 Output: Yes </div>
+<h3>ques29: Program to find the maximum and minimum value of an array</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, max, min;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+max = min = arr[0];
+for(int i = 1; i < n; i++) {
+    if(arr[i] > max) max = arr[i];
+    if(arr[i] < min) min = arr[i];
+}
+
+cout << "Max: " << max << " Min: " << min;
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 5 10 20 5 40 30 Output: Max: 40 Min: 5 </div>
+<h3>ques30: Program to insert an element at a specific position in an array</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, pos, val;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+cin >> pos >> val;
+
+for(int i = n; i > pos; i--) arr[i] = arr[i-1];
+arr[pos] = val;
+n++;
+
+for(int i = 0; i < n; i++) cout << arr[i] << " ";
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 5 10 20 30 40 50 2 25 Output: 10 20 25 30 40 50 </div>
+<h3>ques31: Program to reverse an array of integer values</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, temp;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+for(int i = 0; i < n/2; i++) {
+    temp = arr[i];
+    arr[i] = arr[n-1-i];
+    arr[n-1-i] = temp;
+}
+
+for(int i = 0; i < n; i++) cout << arr[i] << " ";
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 5 1 2 3 4 5 Output: 5 4 3 2 1 </div>
+<h3>ques32: Program to find the common elements between two arrays</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr1[100], arr2[100], n1, n2;
+cin >> n1;
+for(int i = 0; i < n1; i++) cin >> arr1[i];
+cin >> n2;
+for(int i = 0; i < n2; i++) cin >> arr2[i];
+
+for(int i = 0; i < n1; i++) {
+    for(int j = 0; j < n2; j++) {
+        if(arr1[i] == arr2[j]) {
+            cout << arr1[i] << " ";
+            break;
+        }
+    }
+}
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 3 1 2 3 4 2 3 4 5 Output: 2 3 </div>
+<h3>ques33: Program to find the duplicate values of an array of integer values</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+for(int i = 0; i < n; i++) {
+    for(int j = i+1; j < n; j++) {
+        if(arr[i] == arr[j]) {
+            cout << arr[j] << " ";
+            break;
+        }
+    }
+}
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 6 1 2 2 3 4 3 Output: 2 3 </div>
+<h3>ques34: Program to find second largest number from the array</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, temp;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+for(int i = 0; i < n-1; i++) {
+    for(int j = i+1; j < n; j++) {
+        if(arr[i] < arr[j]) {
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+}
+
+cout << arr[1];
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 5 10 20 30 40 50 Output: 40 </div>
+<h3>ques35: Program to find second lowest number from the array</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, temp;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+for(int i = 0; i < n-1; i++) {
+    for(int j = i+1; j < n; j++) {
+        if(arr[i] > arr[j]) {
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+}
+
+cout << arr[1];
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 5 50 20 10 40 30 Output: 20 </div>
+<h3>ques36: Program to find the number of even and odd integers in a given array of integers</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, even = 0, odd = 0;
+cin >> n;
+for(int i = 0; i < n; i++) {
+cin >> arr[i];
+if(arr[i] % 2 == 0) even++;
+else odd++;
+}
+
+cout << "Even: " << even << " Odd: " << odd;
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 5 1 2 3 4 5 Output: Even: 2 Odd: 3 </div>
+<h3>ques37: Program to get the difference between the largest and smallest values in an array of integers</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, max, min;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+max = min = arr[0];
+for(int i = 1; i < n; i++) {
+    if(arr[i] > max) max = arr[i];
+    if(arr[i] < min) min = arr[i];
+}
+
+cout << max - min;
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 5 10 20 5 40 30 Output: 35 </div>
+<h3>ques38: Program to segregate all 0s on left side and all 1s on right side of a given array of 0s and 1s</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, count0 = 0;
+cin >> n;
+for(int i = 0; i < n; i++) {
+cin >> arr[i];
+if(arr[i] == 0) count0++;
+}
+
+for(int i = 0; i < count0; i++) cout << "0 ";
+for(int i = count0; i < n; i++) cout << "1 ";
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 6 0 1 0 1 1 0 Output: 0 0 0 1 1 1 </div>
+<h3>ques39: Program to cyclically rotate a given array clockwise by one</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n, temp;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+temp = arr[n-1];
+for(int i = n-1; i > 0; i--) arr[i] = arr[i-1];
+arr[0] = temp;
+
+for(int i = 0; i < n; i++) cout << arr[i] << " ";
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 5 1 2 3 4 5 Output: 5 1 2 3 4 </div>
+<h3>ques40: Program to print all unique elements in an array</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int arr[100], n;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> arr[i];
+
+for(int i = 0; i < n; i++) {
+    bool duplicate = false;
+    for(int j = 0; j < n; j++) {
+        if(i != j && arr[i] == arr[j]) {
+            duplicate = true;
+            break;
+        }
+    }
+    if(!duplicate) cout << arr[i] << " ";
+}
+
+return 0;
+
+}
+</pre>
+
+<div class="output"> Input: 6 1 2 2 3 4 3 Output: 1 4 </div>
+
+<br>
+
+<br>
+<h1><b>multidimentional Arrays<b></h1>
+    <h3>ques1: Enter the matrix and print in matrix format</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int rows, cols;
+cin >> rows >> cols;
+int mat[100][100];
+for(int i = 0; i < rows; i++)
+for(int j = 0; j < cols; j++)
+cin >> mat[i][j];
+for(int i = 0; i < rows; i++) {
+for(int j = 0; j < cols; j++) cout << mat[i][j] << " ";
+cout << endl;
+}
+return 0;
+}
+</pre>
+
+<h3>ques2: Add two matrices</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int r, c;
+cin >> r >> c;
+int a[100][100], b[100][100], sum[100][100];
+for(int i=0;i<r;i++)
+for(int j=0;j<c;j++) cin >> a[i][j];
+for(int i=0;i<r;i++)
+for(int j=0;j<c;j++) cin >> b[i][j];
+for(int i=0;i<r;i++) {
+for(int j=0;j<c;j++) {
+sum[i][j] = a[i][j] + b[i][j];
+cout << sum[i][j] << " ";
+}
+cout << endl;
+}
+return 0;
+}
+</pre>
+
+<h3>ques3: Multiply two matrices</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int r1, c1, r2, c2;
+cin >> r1 >> c1 >> r2 >> c2;
+int a[100][100], b[100][100], prod[100][100]={0};
+if(c1 != r2) { cout << "Cannot multiply"; return 0; }
+for(int i=0;i<r1;i++)
+for(int j=0;j<c1;j++) cin >> a[i][j];
+for(int i=0;i<r2;i++)
+for(int j=0;j<c2;j++) cin >> b[i][j];
+for(int i=0;i<r1;i++)
+for(int j=0;j<c2;j++)
+for(int k=0;k<c1;k++) prod[i][j] += a[i][k]*b[k][j];
+for(int i=0;i<r1;i++) {
+for(int j=0;j<c2;j++) cout << prod[i][j] << " ";
+cout << endl;
+}
+return 0;
+}
+</pre>
+
+<h3>ques4: Subtract two matrices</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int r, c;
+cin >> r >> c;
+int a[100][100], b[100][100], diff[100][100];
+for(int i=0;i<r;i++)
+for(int j=0;j<c;j++) cin >> a[i][j];
+for(int i=0;i<r;i++)
+for(int j=0;j<c;j++) cin >> b[i][j];
+for(int i=0;i<r;i++) {
+for(int j=0;j<c;j++) {
+diff[i][j] = a[i][j] - b[i][j];
+cout << diff[i][j] << " ";
+}
+cout << endl;
+}
+return 0;
+}
+</pre>
+
+<h3>ques5: Determine whether two matrices are equal</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int r, c;
+cin >> r >> c;
+int a[100][100], b[100][100];
+for(int i=0;i<r;i++)
+for(int j=0;j<c;j++) cin >> a[i][j];
+for(int i=0;i<r;i++)
+for(int j=0;j<c;j++) cin >> b[i][j];
+bool equal = true;
+for(int i=0;i<r;i++)
+for(int j=0;j<c;j++)
+if(a[i][j] != b[i][j]) equal = false;
+if(equal) cout << "Equal";
+else cout << "Not Equal";
+return 0;
+}
+</pre>
+
+<h3>ques6: Display lower triangular matrix</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int n;
+cin >> n;
+int mat[100][100];
+for(int i=0;i<n;i++)
+for(int j=0;j<n;j++) cin >> mat[i][j];
+for(int i=0;i<n;i++) {
+for(int j=0;j<n;j++) {
+if(j>i) cout << "0 ";
+else cout << mat[i][j] << " ";
+}
+cout << endl;
+}
+return 0;
+}
+</pre>
+
+<h3>ques7: Display upper triangular matrix</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int n;
+cin >> n;
+int mat[100][100];
+for(int i=0;i<n;i++)
+for(int j=0;j<n;j++) cin >> mat[i][j];
+for(int i=0;i<n;i++) {
+for(int j=0;j<n;j++) {
+if(j<i) cout << "0 ";
+else cout << mat[i][j] << " ";
+}
+cout << endl;
+}
+return 0;
+}
+</pre>
+
+<h3>ques8: Frequency of odd & even numbers in a matrix</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int r, c;
+cin >> r >> c;
+int mat[100][100];
+int even=0, odd=0;
+for(int i=0;i<r;i++)
+for(int j=0;j<c;j++) {
+cin >> mat[i][j];
+if(mat[i][j]%2==0) even++;
+else odd++;
+}
+cout << "Even: " << even << " Odd: " << odd;
+return 0;
+}
+</pre>
+
+<h3>ques9: Sum of each row and each column of a matrix</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int r, c;
+cin >> r >> c;
+int mat[100][100];
+for(int i=0;i<r;i++)
+for(int j=0;j<c;j++) cin >> mat[i][j];
+for(int i=0;i<r;i++) {
+int sum=0;
+for(int j=0;j<c;j++) sum += mat[i][j];
+cout << "Row " << i << ": " << sum << endl;
+}
+for(int j=0;j<c;j++) {
+int sum=0;
+for(int i=0;i<r;i++) sum += mat[i][j];
+cout << "Col " << j << ": " << sum << endl;
+}
+return 0;
+}
+</pre>
+
+<h3>ques10: Determine whether a matrix is identity matrix</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int n;
+cin >> n;
+int mat[100][100];
+for(int i=0;i<n;i++)
+for(int j=0;j<n;j++) cin >> mat[i][j];
+bool identity=true;
+for(int i=0;i<n;i++)
+for(int j=0;j<n;j++)
+if((i==j && mat[i][j]!=1) || (i!=j && mat[i][j]!=0)) identity=false;
+if(identity) cout << "Identity";
+else cout << "Not Identity";
+return 0;
+}
+</pre>
+
+<h3>ques11: Transpose matrix</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int r, c;
+cin >> r >> c;
+int mat[100][100], trans[100][100];
+for(int i=0;i<r;i++)
+for(int j=0;j<c;j++) cin >> mat[i][j];
+for(int i=0;i<r;i++)
+for(int j=0;j<c;j++) trans[j][i] = mat[i][j];
+for(int i=0;i<c;i++) {
+for(int j=0;j<r;j++) cout << trans[i][j] << " ";
+cout << endl;
+}
+return 0;
+}
+</pre>
+
+<h3>ques12: Determine whether a matrix is sparse matrix</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int r, c;
+cin >> r >> c;
+int mat[100][100];
+int zero=0;
+for(int i=0;i<r;i++)
+for(int j=0;j<c;j++) {
+cin >> mat[i][j];
+if(mat[i][j]==0) zero++;
+}
+if(zero > (r*c)/2) cout << "Sparse";
+else cout << "Not Sparse";
+return 0;
+}
+
+        </div>
+    </div>
+
+
+    
+    <div class="category" id="strings">
+        <h2>String Questions</h2>
+        <div class="program">
+            <h3>Q1: Reverse String</h3>
+            <pre>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+int main() {
+    string s = "Hello";
+    reverse(s.begin(), s.end());
+    cout << s;
+    return 0;
+}</pre>
+            <div class="output">Output: olleH</div>
+
+            <h3>ques1: Program to check anagram</h3> <pre> #include <iostream> #include <cstring> #include <algorithm> using namespace std;
+
+bool isAnagram(char s1[], char s2[]) {
+int n1 = strlen(s1);
+int n2 = strlen(s2);
+if(n1 != n2) return false;
+sort(s1, s1 + n1);
+sort(s2, s2 + n2);
+return strcmp(s1, s2) == 0;
+}
+
+int main() {
+char str1[100], str2[100];
+cin >> str1 >> str2;
+if(isAnagram(str1, str2)) cout << "Yes";
+else cout << "No";
+return 0;
+}
+</pre>
+
+<div class="output"> Input: listen silent Output: Yes </div>
+<h3>ques2: Program to swap a pair of characters in a string</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[100];
+int i, j;
+cin >> s >> i >> j;
+char temp = s[i];
+s[i] = s[j];
+s[j] = temp;
+cout << s;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: hello 1 4 Output: holle </div>
+<h3>ques3: Program to check if a string contains only digits</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[100];
+cin >> s;
+int n = strlen(s);
+bool onlyDigits = true;
+for(int i = 0; i < n; i++) if(s[i] < '0' || s[i] > '9') onlyDigits = false;
+if(onlyDigits) cout << "Yes";
+else cout << "No";
+return 0;
+}
+</pre>
+
+<div class="output"> Input: 12345 Output: Yes </div>
+<h3>ques4: Program to perform deep copy for a string</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char str1[100], str2[100];
+cin >> str1;
+strcpy(str2, str1);
+cout << str2;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: hello Output: hello </div>
+<h3>ques5: Program to remove all occurrences of a given character from input string</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[100], result[100];
+char c;
+cin >> s >> c;
+int n = strlen(s), k = 0;
+for(int i = 0; i < n; i++) if(s[i] != c) result[k++] = s[i];
+result[k] = '\0';
+cout << result;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: hello l Output: heo </div>
+<h3>ques6: Program to add a character to a string</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[100], c;
+cin >> s >> c;
+int n = strlen(s);
+s[n] = c;
+s[n+1] = '\0';
+cout << s;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: hello ! Output: hello! </div>
+<h3>ques7: Program to check whether a string is a palindrome</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+bool isPalindrome(char s[]) {
+int n = strlen(s);
+for(int i = 0; i < n/2; i++) if(s[i] != s[n-1-i]) return false;
+return true;
+}
+
+int main() {
+char s[100];
+cin >> s;
+if(isPalindrome(s)) cout << "Yes";
+else cout << "No";
+return 0;
+}
+</pre>
+
+<div class="output"> Input: madam Output: Yes </div>
+<h3>ques8: Program to convert enum to string</h3> <pre> #include <iostream> using namespace std;
+
+enum Color { RED, GREEN, BLUE };
+
+int main() {
+int x;
+cin >> x;
+Color c = (Color)x;
+char result[10];
+if(c == RED) strcpy(result, "RED");
+else if(c == GREEN) strcpy(result, "GREEN");
+else strcpy(result, "BLUE");
+cout << result;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: 1 Output: GREEN </div>
+<h3>ques9: Program to count number of words in a string</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[200];
+cin.getline(s, 200);
+int count = 0;
+for(int i = 0; s[i] != '\0'; i++) {
+if(s[i] != ' ' && (s[i+1] == ' ' || s[i+1] == '\0')) count++;
+}
+cout << count;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: hello world from cplusplus Output: 4 </div>
+<h3>ques10: Program to count the total number of characters in a string</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[100];
+cin.getline(s, 100);
+cout << strlen(s);
+return 0;
+}
+</pre>
+
+<div class="output"> Input: hello Output: 5 </div>
+<h3>ques11: Program to count the total number of punctuation characters in a string</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[200];
+cin.getline(s, 200);
+int count = 0;
+for(int i = 0; s[i] != '\0'; i++) {
+if((s[i] >= 33 && s[i] <= 47) || (s[i] >= 58 && s[i] <= 64) ||
+(s[i] >= 91 && s[i] <= 96) || (s[i] >= 123 && s[i] <= 126)) count++;
+}
+cout << count;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: Hello, world! Output: 2 </div>
+<h3>ques12: Program to count total vowels and consonants in a string</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[200];
+cin.getline(s, 200);
+int vowels = 0, consonants = 0;
+for(int i = 0; s[i] != '\0'; i++) {
+char c = tolower(s[i]);
+if(c >= 'a' && c <= 'z') {
+if(c=='a'||c=='e'||c=='i'||c=='o'||c=='u') vowels++;
+else consonants++;
+}
+}
+cout << "Vowels: " << vowels << " Consonants: " << consonants;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: Hello World Output: Vowels: 3 Consonants: 7 </div>
+<h3>ques13: Program to determine whether a string is palindrome</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[100];
+cin >> s;
+int n = strlen(s);
+bool palindrome = true;
+for(int i = 0; i < n/2; i++) if(s[i] != s[n-1-i]) palindrome = false;
+if(palindrome) cout << "Yes";
+else cout << "No";
+return 0;
+}
+</pre>
+
+<div class="output"> Input: level Output: Yes </div>
+<h3>ques14: Program to determine whether one string is a rotation of another</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+bool isRotation(char s1[], char s2[]) {
+int n1 = strlen(s1), n2 = strlen(s2);
+if(n1 != n2) return false;
+char temp[200];
+strcpy(temp, s1);
+strcat(temp, s1);
+return strstr(temp, s2) != NULL;
+}
+
+int main() {
+char s1[100], s2[100];
+cin >> s1 >> s2;
+if(isRotation(s1, s2)) cout << "Yes";
+else cout << "No";
+return 0;
+}
+</pre>
+
+<div class="output"> Input: abcde cdeab Output: Yes </div>
+<h3>ques15: Program to divide a string in 'N' equal parts</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[200];
+int N;
+cin.getline(s, 200);
+cin >> N;
+int len = strlen(s);
+if(len % N != 0) {
+cout << "Cannot divide equally";
+return 0;
+}
+int partLen = len / N;
+for(int i = 0; i < len; i++) {
+cout << s[i];
+if((i+1) % partLen == 0) cout << endl;
+}
+return 0;
+}
+</pre>
+
+<div class="output"> Input: helloworld 2 Output: hello world </div>
+<h3>ques16: Program to find all subsets of a string</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[20];
+cin >> s;
+int n = strlen(s);
+int total = 1 << n;
+for(int i = 0; i < total; i++) {
+for(int j = 0; j < n; j++) {
+if(i & (1 << j)) cout << s[j];
+}
+cout << endl;
+}
+return 0;
+}
+</pre>
+
+<div class="output"> Input: ab Output:
+
+a
+b
+ab
+
+</div>
+<h3>ques17: Program to find all permutations of a string</h3> <pre> #include <iostream> #include <algorithm> #include <cstring> using namespace std;
+
+int main() {
+char s[10];
+cin >> s;
+sort(s, s + strlen(s));
+do {
+cout << s << endl;
+} while(next_permutation(s, s + strlen(s)));
+return 0;
+}
+</pre>
+
+<div class="output"> Input: abc Output: abc acb bac bca cab cba </div>
+<h3>ques18: Program to find maximum and minimum occurring character in a string</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[100];
+cin.getline(s, 100);
+int freq[256] = {0};
+for(int i = 0; s[i] != '\0'; i++) freq[(int)s[i]]++;
+int maxF = 0, minF = 1000;
+char maxC, minC;
+for(int i = 0; i < 256; i++) {
+if(freq[i] > maxF) { maxF = freq[i]; maxC = (char)i; }
+if(freq[i] != 0 && freq[i] < minF) { minF = freq[i]; minC = (char)i; }
+}
+cout << "Max: " << maxC << " Min: " << minC;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: hello Output: Max: l Min: h </div>
+<h3>ques19: Program to find reverse of a string</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[100];
+cin >> s;
+int n = strlen(s);
+for(int i = n-1; i >= 0; i--) cout << s[i];
+return 0;
+}
+</pre>
+
+<div class="output"> Input: hello Output: olleh </div>
+<h3>ques20: Program to find duplicate characters in a string</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[100];
+cin >> s;
+int freq[256] = {0};
+for(int i = 0; s[i] != '\0'; i++) freq[(int)s[i]]++;
+for(int i = 0; i < 256; i++) if(freq[i] > 1) cout << (char)i << " ";
+return 0;
+}
+</pre>
+
+<div class="output"> Input: hello Output: l </div>
+<h3>ques21: Program to find duplicate words in a string</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[200];
+cin.getline(s, 200);
+char words[50][50];
+int wordCount = 0;
+char *token = strtok(s, " ");
+while(token != NULL) {
+strcpy(words[wordCount++], token);
+token = strtok(NULL, " ");
+}
+for(int i = 0; i < wordCount; i++) {
+int count = 1;
+for(int j = i+1; j < wordCount; j++) if(strcmp(words[i], words[j]) == 0) { count++; strcpy(words[j], ""); }
+if(count > 1 && strcmp(words[i], "") != 0) cout << words[i] << " ";
+}
+return 0;
+}
+</pre>
+
+<div class="output"> Input: hello world hello Output: hello </div>
+<h3>ques22: Program to find frequency of characters</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[100];
+cin >> s;
+int freq[256] = {0};
+for(int i = 0; s[i] != '\0'; i++) freq[(int)s[i]]++;
+for(int i = 0; i < 256; i++) if(freq[i] > 0) cout << (char)i << ":" << freq[i] << " ";
+return 0;
+}
+</pre>
+
+<div class="output"> Input: hello Output: h:1 e:1 l:2 o:1 </div>
+<h3>ques23: Program to find largest and smallest word in a string</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[200];
+cin.getline(s, 200);
+char *token = strtok(s, " ");
+char largest[50], smallest[50];
+strcpy(largest, token);
+strcpy(smallest, token);
+while(token != NULL) {
+if(strlen(token) > strlen(largest)) strcpy(largest, token);
+if(strlen(token) < strlen(smallest)) strcpy(smallest, token);
+token = strtok(NULL, " ");
+}
+cout << "Largest: " << largest << " Smallest: " << smallest;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: this is a test string Output: Largest: string Smallest: a </div>
+<h3>ques24: Program to find the longest repeating sequence in a string</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[100];
+cin >> s;
+int n = strlen(s), maxLen = 0, start = 0;
+for(int i = 0; i < n; i++) {
+for(int j = i+1; j < n; j++) {
+int len = 0;
+while(s[i+len] == s[j+len] && (i+len < n) && (j+len < n)) len++;
+if(len > maxLen) { maxLen = len; start = i; }
+}
+}
+for(int i = start; i < start+maxLen; i++) cout << s[i];
+return 0;
+}
+</pre>
+
+<div class="output"> Input: aabcaabc Output: aabc </div>
+<h3>ques25: Program to find the most repeated word in a text</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[200];
+cin.getline(s, 200);
+char words[50][50];
+int wordCount = 0;
+char *token = strtok(s, " ");
+while(token != NULL) {
+strcpy(words[wordCount++], token);
+token = strtok(NULL, " ");
+}
+int maxCount = 0;
+char most[50];
+for(int i = 0; i < wordCount; i++) {
+int count = 1;
+for(int j = i+1; j < wordCount; j++) if(strcmp(words[i], words[j]) == 0) count++;
+if(count > maxCount) { maxCount = count; strcpy(most, words[i]); }
+}
+cout << most;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: hello world hello hello Output: hello </div>
+<h3>ques26: Program to find the number of words in a text</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[200];
+cin.getline(s, 200);
+int count = 0;
+char *token = strtok(s, " ");
+while(token != NULL) { count++; token = strtok(NULL, " "); }
+cout << count;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: hello world from cplusplus Output: 4 </div>
+<h3>ques27: Program to get a character from the given string</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[100];
+int pos;
+cin >> s >> pos;
+cout << s[pos];
+return 0;
+}
+</pre>
+
+<div class="output"> Input: hello 1 Output: e </div>
+<h3>ques28: Program to insert a string into another string</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s1[200], s2[100];
+int pos;
+cin.getline(s1, 200);
+cin.getline(s2, 100);
+cin >> pos;
+char result[300];
+strncpy(result, s1, pos);
+result[pos] = '\0';
+strcat(result, s2);
+strcat(result, s1 + pos);
+cout << result;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: hello world INSERT 6 Output: hello INSERTworld </div>
+<h3>ques29: Program to print a new line for each word in a string</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[200];
+cin.getline(s, 200);
+char *token = strtok(s, " ");
+while(token != NULL) {
+cout << token << endl;
+token = strtok(NULL, " ");
+}
+return 0;
+}
+</pre>
+
+<div class="output"> Input: hello world cplusplus Output: hello world cplusplus </div>
+<h3>ques30: Program to print even length words</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[200];
+cin.getline(s, 200);
+char *token = strtok(s, " ");
+while(token != NULL) {
+if(strlen(token) % 2 == 0) cout << token << " ";
+token = strtok(NULL, " ");
+}
+return 0;
+}
+</pre>
+
+<div class="output"> Input: hello world cplusplus code Output: code </div>
+<h3>ques31: Program to print smallest and biggest possible palindrome word in a given string</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+bool isPalindrome(char s[]) {
+int n = strlen(s);
+for(int i = 0; i < n/2; i++) if(s[i] != s[n-1-i]) return false;
+return true;
+}
+
+int main() {
+char s[200];
+cin.getline(s, 200);
+char *token = strtok(s, " ");
+char smallest[50], biggest[50];
+bool first = true;
+while(token != NULL) {
+if(isPalindrome(token)) {
+if(first) { strcpy(smallest, token); strcpy(biggest, token); first = false; }
+if(strlen(token) < strlen(smallest)) strcpy(smallest, token);
+if(strlen(token) > strlen(biggest)) strcpy(biggest, token);
+}
+token = strtok(NULL, " ");
+}
+cout << "Smallest: " << smallest << " Biggest: " << biggest;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: dad mom level noon Output: Smallest: dad Biggest: level </div>
+<h3>ques32: Program to remove all white spaces from a string</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[200], result[200];
+cin.getline(s, 200);
+int k = 0;
+for(int i = 0; s[i] != '\0'; i++) if(s[i] != ' ') result[k++] = s[i];
+result[k] = '\0';
+cout << result;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: h e l l o Output: hello </div>
+<h3>ques33: Program to replace lowercase characters with uppercase and vice versa</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[200];
+cin.getline(s, 200);
+for(int i = 0; s[i] != '\0'; i++) {
+if(s[i] >= 'a' && s[i] <= 'z') s[i] = s[i] - 'a' + 'A';
+else if(s[i] >= 'A' && s[i] <= 'Z') s[i] = s[i] - 'A' + 'a';
+}
+cout << s;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: HeLLo Output: hEllO </div>
+<h3>ques34: Program to replace spaces in a string with a specific character</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[200];
+char c;
+cin.getline(s, 200);
+cin >> c;
+for(int i = 0; s[i] != '\0'; i++) if(s[i] == ' ') s[i] = c;
+cout << s;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: hello world ! Output: hello_world_! </div>
+<h3>ques35: Program to separate individual characters from a string</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[200];
+cin >> s;
+for(int i = 0; s[i] != '\0'; i++) cout << s[i] << " ";
+return 0;
+}
+</pre>
+
+<div class="output"> Input: hello Output: h e l l o </div>
+<h3>ques36: Program to split a string into a number of sub-strings</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[200];
+char delim;
+cin.getline(s, 200);
+cin >> delim;
+char *token = strtok(s, &delim);
+while(token != NULL) {
+cout << token << endl;
+token = strtok(NULL, &delim);
+}
+return 0;
+}
+</pre>
+
+<div class="output"> Input: apple,banana,cherry , Output: apple banana cherry </div>
+<h3>ques37: Program to swap two string variables without using third variable</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s1[100], s2[100];
+cin >> s1 >> s2;
+strcat(s1, s2);
+int len1 = strlen(s1) - strlen(s2);
+strncpy(s2, s1, len1);
+s2[len1] = '\0';
+memmove(s1, s1+len1, strlen(s1+len1)+1);
+cout << s1 << " " << s2;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: hello world Output: world hello </div>
+<h3>ques38: Read two string inputs and check if first contains second</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s1[100], s2[100];
+cin >> s1 >> s2;
+if(strstr(s1, s2) != NULL) cout << "Yes";
+else cout << "No";
+return 0;
+}
+</pre>
+
+<div class="output"> Input: hello ell Output: Yes </div>
+<h3>ques39: Reverse string word by word</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[200];
+cin.getline(s, 200);
+char *words[50];
+int count = 0;
+char *token = strtok(s, " ");
+while(token != NULL) { words[count++] = token; token = strtok(NULL, " "); }
+for(int i = count-1; i >= 0; i--) cout << words[i] << " ";
+return 0;
+}
+</pre>
+
+<div class="output"> Input: hello world from cpp Output: cpp from world hello </div>
+<h3>ques40: Check if two strings are created with same characters</h3> <pre> #include <iostream> #include <cstring> #include <algorithm> using namespace std;
+
+int main() {
+char s1[100], s2[100];
+cin >> s1 >> s2;
+int n1 = strlen(s1), n2 = strlen(s2);
+if(n1 != n2) { cout << "No"; return 0; }
+sort(s1, s1+n1);
+sort(s2, s2+n2);
+if(strcmp(s1, s2) == 0) cout << "Yes";
+else cout << "No";
+return 0;
+}
+</pre>
+
+<div class="output"> Input: listen silent Output: Yes </div>
+<h3>ques41: Program to find first non-repeated character from input string</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[200];
+cin >> s;
+int freq[256] = {0};
+for(int i = 0; s[i] != '\0'; i++) freq[(int)s[i]]++;
+for(int i = 0; s[i] != '\0'; i++) {
+if(freq[(int)s[i]] == 1) { cout << s[i]; break; }
+}
+return 0;
+}
+</pre>
+
+<div class="output"> Input: aabbc Output: c </div>
+<h3>ques42: Method to count all words in a string</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[200];
+cin.getline(s, 200);
+int count = 0;
+char *token = strtok(s, " ");
+while(token != NULL) { count++; token = strtok(NULL, " "); }
+cout << count;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: hello world from cpp Output: 4 </div>
+<h3>ques43: Method to count all vowels in a string</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[200];
+cin.getline(s, 200);
+int vowels = 0;
+for(int i = 0; s[i] != '\0'; i++) {
+char c = tolower(s[i]);
+if(c=='a'||c=='e'||c=='i'||c=='o'||c=='u') vowels++;
+}
+cout << vowels;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: hello world Output: 3 </div>
+<h3>ques44: Program to sort names in alphabetical order</h3> <pre> #include <iostream> #include <cstring> #include <algorithm> using namespace std;
+
+int main() {
+char names[10][50];
+int n;
+cin >> n;
+for(int i = 0; i < n; i++) cin >> names[i];
+for(int i = 0; i < n-1; i++) {
+for(int j = i+1; j < n; j++) {
+if(strcmp(names[i], names[j]) > 0) {
+char temp[50];
+strcpy(temp, names[i]);
+strcpy(names[i], names[j]);
+strcpy(names[j], temp);
+}
+}
+}
+for(int i = 0; i < n; i++) cout << names[i] << " ";
+return 0;
+}
+</pre>
+
+<div class="output"> Input: 3 john alice bob Output: alice bob john </div>
+<h3>ques45: Method to count all words in a string (alternate)</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[200];
+cin.getline(s, 200);
+int count = 0;
+char *token = strtok(s, " ");
+while(token != NULL) { count++; token = strtok(NULL, " "); }
+cout << count;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: this is cpp Output: 3 </div>
+<h3>ques46: Method to compute future investment value at given interest rate for years</h3> <pre> #include <iostream> #include <cmath> using namespace std;
+
+int main() {
+double principal, rate;
+int years;
+cin >> principal >> rate >> years;
+double future = principal * pow(1 + rate/100, years);
+cout << future;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: 1000 5 2 Output: 1102.5 </div>
+<h3>ques47: Method to print characters between two characters (A to P)</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+char start = 'A', end = 'P';
+for(char c = start; c <= end; c++) cout << c << " ";
+return 0;
+}
+</pre>
+
+<div class="output"> Output: A B C D E F G H I J K L M N O P </div>
+<h3>ques48: Method to check whether a string is a valid password</h3> <pre> #include <iostream> #include <cstring> using namespace std;
+
+int main() {
+char s[100];
+cin >> s;
+bool hasUpper=false, hasLower=false, hasDigit=false;
+int n = strlen(s);
+if(n < 6) { cout << "Invalid"; return 0; }
+for(int i=0;i<n;i++) {
+if(s[i]>='A' && s[i]<='Z') hasUpper=true;
+else if(s[i]>='a' && s[i]<='z') hasLower=true;
+else if(s[i]>='0' && s[i]<='9') hasDigit=true;
+}
+if(hasUpper && hasLower && hasDigit) cout << "Valid";
+else cout << "Invalid";
+return 0;
+}
+</pre>
+
+<div class="output"> Input: Hello123 Output: Valid </div>
+<h3>ques49: Method to display current date and time</h3> <pre> #include <iostream> #include <ctime> using namespace std;
+
+int main() {
+time_t now = time(0);
+char* dt = ctime(&now);
+cout << dt;
+return 0;
+}
+</pre>
+
+<div class="output"> Output: Sun Apr 5 12:34:56 2026 </div>
+<h3>ques50: Method that accepts three integers and returns true if one is the middle point</h3> <pre> #include <iostream> using namespace std;
+
+bool isMiddle(int a,int b,int c) {
+if((a>b && a<c) || (a<c && a>b)) return true;
+if((b>a && b<c) || (b<c && b>a)) return true;
+if((c>a && c<b) || (c<b && c>a)) return true;
+return false;
+}
+
+int main() {
+int x,y,z;
+cin >> x >> y >> z;
+if(isMiddle(x,y,z)) cout << "Yes";
+else cout << "No";
+return 0;
+}
+</pre>
+<div class="output"> Input: 10 20 30 Output: Yes </div>
+        </div>
+    </div>
+
+    
+    
+    
+    
+    <div class="category" id="functions">
+        <h2>Function Questions</h2>
+        <div class="program">
+           <h3>Q1: Smallest of Three Numbers</h3>
+<pre>#include <iostream>
+using namespace std;
+
+int smallest(int a, int b, int c) {
+    if(a <= b && a <= c) return a;
+    else if(b <= a && b <= c) return b;
+    else return c;
+}</pre>
+<div class="output">Result: Returns the smallest number.</div>
+
+<h3>Q2: Average of Three Numbers</h3>
+<pre>#include <iostream>
+using namespace std;
+
+float average(int a, int b, int c) {
+    return (a + b + c) / 3.0;
+}</pre>
+<div class="output">Result: Calculates average of three numbers.</div>
+<h3>Q3: Middle Character of String</h3>
+<pre>#include <iostream>
+#include <string>
+using namespace std;
+
+void middleChar(string str) {
+    int len = str.length();
+    if(len % 2 == 0)
+        cout << str[len/2 - 1] << str[len/2];
+    else
+        cout << str[len/2];
+}</pre>
+<div class="output">Result: Displays middle character(s).</div>
+<h3>Q4: Twin Prime Numbers</h3>
+<pre>#include <iostream>
+using namespace std;
+
+bool isPrime(int n) {
+    if(n < 2) return false;
+    for(int i=2; i<=n/2; i++)
+        if(n % i == 0) return false;
+    return true;
+}
+
+void twinPrimes() {
+    for(int i=2; i<100; i++) {
+        if(isPrime(i) && isPrime(i+2))
+            cout << "(" << i << "," << i+2 << ") ";
+    }
+}</pre>
+<div class="output">Result: Displays twin primes less than 100.</div>
+<h3>Q5: Count Digits Equal to 2</h3>
+<pre>#include <iostream>
+using namespace std;
+
+int countTwos(int num) {
+    int count = 0;
+    while(num > 0) {
+        if(num % 10 == 2)
+            count++;
+        num /= 10;
+    }
+    return count;
+}</pre>
+<div class="output">Result: Counts number of digits equal to 2.</div>
+<h3>Q6: Check Consecutive Numbers</h3>
+<pre>#include <iostream>
+using namespace std;
+
+bool areConsecutive(int a, int b, int c) {
+    int max = a, min = a;
+
+    if(b > max) max = b;
+    if(c > max) max = c;
+
+    if(b < min) min = b;
+    if(c < min) min = c;
+
+    return (max - min == 2);
+}</pre>
+<div class="output">Result: Returns true if numbers are consecutive.</div>
+<h3>Q7: Check All Vowels</h3>
+<pre>#include <iostream>
+#include <string>
+using namespace std;
+
+bool allVowels(string str) {
+    for(int i=0; i<str.length(); i++) {
+        char ch = tolower(str[i]);
+        if(ch!='a' && ch!='e' && ch!='i' && ch!='o' && ch!='u')
+            return false;
+    }
+    return true;
+}</pre>
+<div class="output">Result: Returns true if all characters are vowels.</div>
+
+
+
+        </div>
+    </div>
+
+    <div class="category" id="conversion">
+        <h2>Conversion Questions</h2>
+        <div class="program">
+            <h3>Q1: Decimal to Binary</h3>
+            <pre>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int n=10, bin=0, rem, i=1;
+    while(n!=0) {
+        rem = n%2;
+        n /= 2;
+        bin += rem*i;
+        i *= 10;
+    }
+    cout << bin;
+    return 0;
+}</pre>
+            <div class="output">Output: 1010</div>
+            <h3>ques2: Convert int to char array</h3> <pre> #include <iostream> #include <cstdio> using namespace std;
+
+int main() {
+int num;
+cin >> num;
+char str[20];
+sprintf(str, "%d", num);
+cout << str;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: 456 Output: 456 </div>
+<h3>ques3: Convert char array to long</h3> <pre> #include <iostream> #include <cstdlib> using namespace std;
+
+int main() {
+char str[20];
+cin >> str;
+long num = atol(str);
+cout << num;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: 123456789 Output: 123456789 </div>
+<h3>ques4: Convert long to char array</h3> <pre> #include <iostream> #include <cstdio> using namespace std;
+
+int main() {
+long num;
+cin >> num;
+char str[30];
+sprintf(str, "%ld", num);
+cout << str;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: 987654321 Output: 987654321 </div>
+<h3>ques5: Convert char array to float</h3> <pre> #include <iostream> #include <cstdlib> using namespace std;
+
+int main() {
+char str[20];
+cin >> str;
+float num = atof(str);
+cout << num;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: 12.34 Output: 12.34 </div>
+<h3>ques6: Convert float to char array</h3> <pre> #include <iostream> #include <cstdio> using namespace std;
+
+int main() {
+float num;
+cin >> num;
+char str[20];
+sprintf(str, "%f", num);
+cout << str;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: 56.78 Output: 56.780000 </div>
+<h3>ques7: Convert char array to double</h3> <pre> #include <iostream> #include <cstdlib> using namespace std;
+
+int main() {
+char str[20];
+cin >> str;
+double num = atof(str);
+cout << num;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: 123.456 Output: 123.456 </div>
+<h3>ques8: Convert double to char array</h3> <pre> #include <iostream> #include <cstdio> using namespace std;
+
+int main() {
+double num;
+cin >> num;
+char str[30];
+sprintf(str, "%lf", num);
+cout << str;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: 78.9012 Output: 78.901200 </div>
+<h3>ques9: Convert char to int</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+char c;
+cin >> c;
+int num = c - '0';
+cout << num;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: 7 Output: 7 </div>
+<h3>ques10: Convert int to char</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int num;
+cin >> num;
+char c = num + '0';
+cout << c;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: 5 Output: 5 </div>
+<h3>ques11: Convert binary to decimal</h3> <pre> #include <iostream> #include <cmath> using namespace std;
+
+int main() {
+long bin;
+cin >> bin;
+int dec=0, i=0;
+while(bin>0){
+dec += (bin%10)*pow(2,i);
+bin/=10;
+i++;
+}
+cout << dec;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: 1010 Output: 10 </div>
+<h3>ques12: Convert decimal to binary</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int dec;
+cin >> dec;
+int bin[32], i=0;
+while(dec>0){
+bin[i] = dec%2;
+dec/=2;
+i++;
+}
+for(int j=i-1;j>=0;j--) cout << bin[j];
+return 0;
+}
+</pre>
+
+<div class="output"> Input: 10 Output: 1010 </div>
+<h3>ques13: Convert hex to decimal</h3> <pre> #include <iostream> #include <cstdio> using namespace std;
+
+int main() {
+char hex[20];
+cin >> hex;
+int dec;
+sscanf(hex, "%x", &dec);
+cout << dec;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: 1A Output: 26 </div>
+<h3>ques14: Convert decimal to hex</h3> <pre> #include <iostream> #include <cstdio> using namespace std;
+
+int main() {
+int dec;
+cin >> dec;
+char hex[20];
+sprintf(hex, "%X", dec);
+cout << hex;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: 26 Output: 1A </div>
+<h3>ques15: Convert octal to decimal</h3> <pre> #include <iostream> #include <cmath> using namespace std;
+
+int main() {
+long oct;
+cin >> oct;
+int dec=0, i=0;
+while(oct>0){
+dec += (oct%10)*pow(8,i);
+oct/=10;
+i++;
+}
+cout << dec;
+return 0;
+}
+</pre>
+
+<div class="output"> Input: 12 Output: 10 </div>
+<h3>ques16: Convert decimal to octal</h3> <pre> #include <iostream> using namespace std;
+
+int main() {
+int dec;
+cin >> dec;
+int oct[32], i=0;
+while(dec>0){
+oct[i] = dec%8;
+dec/=8;
+i++;
+}
+for(int j=i-1;j>=0;j--) cout << oct[j];
+return 0;
+}
+</pre>
+
+<div class="output"> Input: 10 Output: 12 </div>
+        </div>
+    </div>
+
+   
+   
+   
+    <div class="category" id="oop">
+        <h2>OOP Questions</h2>
+        <div class="program">
+            <h3>Q1: Class and Object</h3>
+            <pre>#include &lt;iostream&gt;
+using namespace std;
+class Student {
+    public: string name;
+};
+int main() {
+    Student s1;
+    s1.name = "John";
+    cout << s1.name;
+    return 0;
+}</pre>
+            <div class="output">Output: John</div>
+            <h3>ques2: Create a Dog class with name and breed</h3> <pre> #include <iostream> using namespace std;
+
+class Dog {
+char name[50];
+char breed[50];
+public:
+Dog(char n[], char b[]) {
+for(int i=0;n[i]!='\0';i++) name[i]=n[i];
+for(int i=0;b[i]!='\0';i++) breed[i]=b[i];
+}
+void setName(char n[]) { for(int i=0;n[i]!='\0';i++) name[i]=n[i]; }
+void setBreed(char b[]) { for(int i=0;b[i]!='\0';i++) breed[i]=b[i]; }
+void display() { cout << name << " " << breed; }
+};
+
+int main() {
+Dog d1("Max", "Beagle");
+Dog d2("Rocky", "Bulldog");
+d2.setName("Buddy");
+d2.setBreed("Labrador");
+d1.display();
+cout << endl;
+d2.display();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: Max Beagle Buddy Labrador </div>
+<h3>ques3: Rectangle class with width and height, area and perimeter</h3> <pre> #include <iostream> using namespace std;
+
+class Rectangle {
+int width, height;
+public:
+Rectangle(int w, int h) { width=w; height=h; }
+int getArea() { return widthheight; }
+int getPerimeter() { return 2(width+height); }
+};
+
+int main() {
+Rectangle r(5, 10);
+cout << r.getArea() << endl;
+cout << r.getPerimeter();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: 50 30 </div>
+<h3>ques4: Circle class with radius, area and circumference</h3> <pre> #include <iostream> using namespace std;
+
+class Circle {
+float radius;
+public:
+Circle(float r) { radius = r; }
+void setRadius(float r) { radius = r; }
+float getArea() { return 3.14radiusradius; }
+float getCircumference() { return 23.14radius; }
+};
+
+int main() {
+Circle c(7);
+cout << c.getArea() << endl;
+cout << c.getCircumference();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: 153.86 43.96 </div>
+<h3>ques5: Book class with title, author, ISBN</h3> <pre> #include <iostream> using namespace std;
+
+class Book {
+char title[50];
+char author[50];
+char ISBN[20];
+public:
+Book(char t[], char a[], char i[]) {
+for(int j=0;t[j]!='\0';j++) title[j]=t[j];
+for(int j=0;a[j]!='\0';j++) author[j]=a[j];
+for(int j=0;i[j]!='\0';j++) ISBN[j]=i[j];
+}
+void display() { cout << title << " " << author << " " << ISBN; }
+};
+
+int main() {
+Book b1("CPlusPlus", "Bjarne", "12345");
+b1.display();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: CPlusPlus Bjarne 12345 </div>
+<h3>ques6: Employee class with name, job title, salary</h3> <pre> #include <iostream> using namespace std;
+
+class Employee {
+char name[50];
+char job[50];
+int salary;
+public:
+Employee(char n[], char j[], int s) { for(int i=0;n[i]!='\0';i++) name[i]=n[i]; for(int i=0;j[i]!='\0';i++) job[i]=j[i]; salary=s; }
+void setSalary(int s) { salary=s; }
+int getSalary() { return salary; }
+void display() { cout << name << " " << job << " " << salary; }
+};
+
+int main() {
+Employee e1("Alice", "Manager", 5000);
+e1.setSalary(5500);
+e1.display();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: Alice Manager 5500 </div>
+<h3>ques7: Bank and Account class</h3> <pre> #include <iostream> using namespace std;
+
+class Account {
+int accNo;
+int balance;
+public:
+Account(int no, int bal) { accNo=no; balance=bal; }
+void deposit(int amt) { balance+=amt; }
+void withdraw(int amt) { if(balance>=amt) balance-=amt; }
+void display() { cout << accNo << " " << balance; }
+};
+
+class Bank {
+Account acc;
+public:
+Bank(int no, int bal): acc(no, bal) {}
+void deposit(int amt) { acc.deposit(amt); }
+void withdraw(int amt) { acc.withdraw(amt); }
+void display() { acc.display(); }
+};
+
+int main() {
+Bank b1(101, 5000);
+b1.deposit(1500);
+b1.withdraw(2000);
+b1.display();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: 101 4500 </div>
+<h3>ques8: TrafficLight class</h3> <pre> #include <iostream> using namespace std;
+
+class TrafficLight {
+char color[10];
+int duration;
+public:
+TrafficLight(char c[], int d) { for(int i=0;c[i]!='\0';i++) color[i]=c[i]; duration=d; }
+void setColor(char c[]) { for(int i=0;c[i]!='\0';i++) color[i]=c[i]; }
+bool isRed() { return color[0]=='R'; }
+bool isGreen() { return color[0]=='G'; }
+void display() { cout << color << " " << duration; }
+};
+
+int main() {
+TrafficLight t("Red", 30);
+t.display();
+cout << endl << t.isRed();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: Red 30 1 </div>
+<h3>ques9: Employee class with years of service</h3> <pre> #include <iostream> using namespace std;
+
+class Employee {
+char name[50];
+int salary;
+int hireYear;
+public:
+Employee(char n[], int s, int h) { for(int i=0;n[i]!='\0';i++) name[i]=n[i]; salary=s; hireYear=h; }
+int yearsOfService(int currentYear) { return currentYear - hireYear; }
+void display() { cout << name << " " << salary; }
+};
+
+int main() {
+Employee e1("Alice", 5000, 2015);
+e1.display();
+cout << endl << e1.yearsOfService(2023);
+return 0;
+}
+</pre>
+
+<div class="output"> Output: Alice 5000 8 </div>
+<h3>ques10: Student class with courses</h3> <pre> #include <iostream> using namespace std;
+
+class Student {
+char name[50];
+char courses[5][20];
+int count;
+public:
+Student(char n[]) { for(int i=0;n[i]!='\0';i++) name[i]=n[i]; count=0; }
+void addCourse(char c[]) { for(int i=0;c[i]!='\0';i++) courses[count][i]=c[i]; count++; }
+void display() { cout << name << " "; for(int i=0;i<count;i++) cout << courses[i] << " "; }
+};
+
+int main() {
+Student s1("Alice");
+s1.addCourse("Math");
+s1.addCourse("Physics");
+s1.display();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: Alice Math Physics </div>
+<h3>ques11: Library class with collection of books</h3> <pre> #include <iostream> using namespace std;
+
+class Book {
+char title[50];
+public:
+Book(char t[]) { for(int i=0;t[i]!='\0';i++) title[i]=t[i]; }
+void display() { cout << title << " "; }
+};
+
+class Library {
+Book* books[10];
+int count;
+public:
+Library() { count=0; }
+void addBook(Book* b) { books[count++] = b; }
+void display() { for(int i=0;i<count;i++) books[i]->display(); }
+};
+
+int main() {
+Library lib;
+Book b1("CPlusPlus");
+Book b2("DataStructures");
+lib.addBook(&b1);
+lib.addBook(&b2);
+lib.display();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: CPlusPlus DataStructures </div>
+<h3>ques12: Airplane class</h3> <pre> #include <iostream> using namespace std;
+
+class Airplane {
+char flightNo[10];
+char destination[50];
+int departureTime;
+public:
+Airplane(char f[], char d[], int t) { for(int i=0;f[i]!='\0';i++) flightNo[i]=f[i]; for(int i=0;d[i]!='\0';i++) destination[i]=d[i]; departureTime=t; }
+void display() { cout << flightNo << " " << destination << " " << departureTime; }
+};
+
+int main() {
+Airplane a("AI101", "Paris", 1200);
+a.display();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: AI101 Paris 1200 </div>
+<h3>ques13: Inventory class with products</h3> <pre> #include <iostream> using namespace std;
+
+class Product {
+char name[50];
+int quantity;
+public:
+Product(char n[], int q) { for(int i=0;n[i]!='\0';i++) name[i]=n[i]; quantity=q; }
+void display() { cout << name << " " << quantity << " "; }
+};
+
+class Inventory {
+Product* products[10];
+int count;
+public:
+Inventory() { count=0; }
+void addProduct(Product* p) { products[count++] = p; }
+void display() { for(int i=0;i<count;i++) products[i]->display(); }
+};
+
+int main() {
+Inventory inv;
+Product p1("Pen", 100);
+Product p2("Notebook", 50);
+inv.addProduct(&p1);
+inv.addProduct(&p2);
+inv.display();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: Pen 100 Notebook 50 </div>
+<h3>ques14: School class with students, teachers, and classes</h3> <pre> #include <iostream> using namespace std;
+
+class School {
+char students[10][50];
+char teachers[5][50];
+int studentCount, teacherCount;
+public:
+School() { studentCount=0; teacherCount=0; }
+void addStudent(char s[]) { for(int i=0;s[i]!='\0';i++) students[studentCount][i]=s[i]; studentCount++; }
+void addTeacher(char t[]) { for(int i=0;t[i]!='\0';i++) teachers[teacherCount][i]=t[i]; teacherCount++; }
+void display() {
+for(int i=0;i<studentCount;i++) cout << students[i] << " ";
+cout << endl;
+for(int i=0;i<teacherCount;i++) cout << teachers[i] << " ";
+}
+};
+
+int main() {
+School sch;
+sch.addStudent("Alice");
+sch.addStudent("Bob");
+sch.addTeacher("Mr. Smith");
+sch.display();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: Alice Bob Mr. Smith </div>
+<h3>ques15: MusicLibrary class with songs</h3> <pre> #include <iostream> using namespace std;
+
+class Song {
+char name[50];
+public:
+Song(char n[]) { for(int i=0;n[i]!='\0';i++) name[i]=n[i]; }
+void display() { cout << name << " "; }
+};
+
+class MusicLibrary {
+Song* songs[10];
+int count;
+public:
+MusicLibrary() { count=0; }
+void addSong(Song* s) { songs[count++] = s; }
+void display() { for(int i=0;i<count;i++) songs[i]->display(); }
+};
+
+int main() {
+MusicLibrary lib;
+Song s1("SongA");
+Song s2("SongB");
+lib.addSong(&s1);
+lib.addSong(&s2);
+lib.display();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: SongA SongB </div>
+<h3>ques16: Shape class with Rectangle, Circle, Triangle</h3> <pre> #include <iostream> using namespace std;
+
+class Shape {
+public:
+virtual float getArea()=0;
+virtual float getPerimeter()=0;
+};
+
+class Rectangle: public Shape {
+int width, height;
+public:
+Rectangle(int w,int h): width(w), height(h) {}
+float getArea() { return widthheight; }
+float getPerimeter() { return 2(width+height); }
+};
+
+class Circle: public Shape {
+float radius;
+public:
+Circle(float r): radius(r) {}
+float getArea() { return 3.14radiusradius; }
+float getPerimeter() { return 23.14radius; }
+};
+
+int main() {
+Rectangle r(5,10);
+Circle c(7);
+cout << r.getArea() << " " << r.getPerimeter() << endl;
+cout << c.getArea() << " " << c.getPerimeter();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: 50 30 153.86 43.96 </div>
+<h3>ques17: Movie class with title, director, actors</h3> <pre> #include <iostream> using namespace std;
+
+class Movie {
+char title[50];
+char director[50];
+public:
+Movie(char t[], char d[]) { for(int i=0;t[i]!='\0';i++) title[i]=t[i]; for(int i=0;d[i]!='\0';i++) director[i]=d[i]; }
+void display() { cout << title << " " << director; }
+};
+
+int main() {
+Movie m("Inception","Nolan");
+m.display();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: Inception Nolan </div>
+<h3>ques18: Restaurant class with menu items, prices, ratings</h3> <pre> #include <iostream> using namespace std;
+
+class Restaurant {
+char items[5][50];
+int prices[5];
+int count;
+public:
+Restaurant() { count=0; }
+void addItem(char item[], int price) { for(int i=0;item[i]!='\0';i++) items[count][i]=item[i]; prices[count]=price; count++; }
+void display() { for(int i=0;i<count;i++) cout << items[i] << " " << prices[i] << " "; }
+};
+
+int main() {
+Restaurant r;
+r.addItem("Burger", 100);
+r.addItem("Pizza", 200);
+r.display();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: Burger 100 Pizza 200 </div>
+<h3>ques19: Reservation class (flights and hotels)</h3> <pre> #include <iostream> using namespace std;
+
+class Reservation {
+char flight[20];
+char hotel[20];
+public:
+void bookFlight(char f[]) { for(int i=0;f[i]!='\0';i++) flight[i]=f[i]; }
+void bookHotel(char h[]) { for(int i=0;h[i]!='\0';i++) hotel[i]=h[i]; }
+void display() { cout << flight << " " << hotel; }
+};
+
+int main() {
+Reservation r;
+r.bookFlight("AI101");
+r.bookHotel("Hilton");
+r.display();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: AI101 Hilton </div>
+<h3>ques20: Default constructor example</h3> <pre> #include <iostream> using namespace std;
+
+class Example {
+int x;
+public:
+Example() { x=10; }
+void display() { cout << x; }
+};
+
+int main() {
+Example e;
+e.display();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: 10 </div>
+<h3>ques21: Parameterized constructor example</h3> <pre> #include <iostream> using namespace std;
+
+class Example {
+int x;
+public:
+Example(int val) { x = val; }
+void display() { cout << x; }
+};
+
+int main() {
+Example e(25);
+e.display();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: 25 </div>
+<h3>ques22: Copy constructor example</h3> <pre> #include <iostream> using namespace std;
+
+class Example {
+int x;
+public:
+Example(int val) { x = val; }
+Example(Example &e) { x = e.x; }
+void display() { cout << x; }
+};
+
+int main() {
+Example e1(50);
+Example e2(e1);
+e2.display();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: 50 </div>
+<h3>ques23: Auto-generated roll number for 10 students</h3> <pre> #include <iostream> using namespace std;
+
+class Student {
+int rollNo;
+char name[50];
+char className[20];
+static int count;
+public:
+Student(char n[], char c[]) { rollNo = ++count; for(int i=0;n[i]!='\0';i++) name[i]=n[i]; for(int i=0;c[i]!='\0';i++) className[i]=c[i]; }
+void display() { cout << rollNo << " " << name << " " << className << endl; }
+};
+
+int Student::count=0;
+
+int main() {
+Student s[10] = { {"Alice","10A"}, {"Bob","10B"}, {"Charlie","10C"}, {"David","10D"}, {"Eve","10E"}, {"Frank","10F"}, {"Grace","10G"}, {"Heidi","10H"}, {"Ivan","10I"}, {"Judy","10J"} };
+for(int i=0;i<10;i++) s[i].display();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: 1 Alice 10A 2 Bob 10B 3 Charlie 10C 4 David 10D 5 Eve 10E 6 Frank 10F 7 Grace 10G 8 Heidi 10H 9 Ivan 10I 10 Judy 10J </div>
+<h3>ques24: Area of circle and rectangle using method overloading</h3> <pre> #include <iostream> using namespace std;
+
+class Shape {
+public:
+float area(float radius) { return 3.14radiusradius; }
+float area(int width, int height) { return width*height; }
+};
+
+int main() {
+Shape s;
+cout << s.area(5) << " " << s.area(4,6);
+return 0;
+}
+</pre>
+
+<div class="output"> Output: 78.5 24 </div>
+<h3>ques25: Person class with private variables and getters/setters</h3> <pre> #include <iostream> using namespace std;
+
+class Person {
+char name[50];
+int age;
+char country[50];
+public:
+void setName(char n[]) { for(int i=0;n[i]!='\0';i++) name[i]=n[i]; }
+void setAge(int a) { age = a; }
+void setCountry(char c[]) { for(int i=0;c[i]!='\0';i++) country[i]=c[i]; }
+void display() { cout << name << " " << age << " " << country; }
+};
+
+int main() {
+Person p;
+p.setName("Alice");
+p.setAge(25);
+p.setCountry("USA");
+p.display();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: Alice 25 USA </div>
+<h3>ques26: BankAccount class with private variables and getters/setters</h3> <pre> #include <iostream> using namespace std;
+
+class BankAccount {
+int accountNumber;
+float balance;
+public:
+void setAccountNumber(int a) { accountNumber = a; }
+void setBalance(float b) { balance = b; }
+int getAccountNumber() { return accountNumber; }
+float getBalance() { return balance; }
+};
+
+int main() {
+BankAccount b;
+b.setAccountNumber(101);
+b.setBalance(5000);
+cout << b.getAccountNumber() << " " << b.getBalance();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: 101 5000 </div>
+<h3>ques27: Rectangle class with private variables and getters/setters</h3> <pre> #include <iostream> using namespace std;
+
+class Rectangle {
+int length, width;
+public:
+void setLength(int l) { length = l; }
+void setWidth(int w) { width = w; }
+int getLength() { return length; }
+int getWidth() { return width; }
+int area() { return length*width; }
+};
+
+int main() {
+Rectangle r;
+r.setLength(5);
+r.setWidth(10);
+cout << r.area();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: 50 </div>
+<h3>ques28: Employee class with formatted salary getter</h3> <pre> #include <iostream> using namespace std;
+
+class Employee {
+int employee_id;
+char employee_name[50];
+float employee_salary;
+public:
+void setId(int id) { employee_id = id; }
+void setName(char n[]) { for(int i=0;n[i]!='\0';i++) employee_name[i]=n[i]; }
+void setSalary(float s) { employee_salary = s; }
+int getId() { return employee_id; }
+char* getName() { return employee_name; }
+void displaySalary() { cout << "Salary: " << employee_salary; }
+};
+
+int main() {
+Employee e;
+e.setId(101);
+e.setName("Alice");
+e.setSalary(5000);
+cout << e.getId() << " " << e.getName() << " ";
+e.displaySalary();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: 101 Alice Salary: 5000 </div>
+<h3>ques29: Circle class with area and perimeter methods</h3> <pre> #include <iostream> using namespace std;
+
+class Circle {
+float radius;
+public:
+void setRadius(float r) { radius = r; }
+float getRadius() { return radius; }
+float calculateArea() { return 3.14radiusradius; }
+float calculatePerimeter() { return 23.14radius; }
+};
+
+int main() {
+Circle c;
+c.setRadius(5);
+cout << c.calculateArea() << " " << c.calculatePerimeter();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: 78.5 31.4 </div>
+<h3>ques30: Car class with getter/setter control</h3> <pre> #include <iostream> using namespace std;
+
+class Car {
+char company_name[50];
+char model_name[50];
+int year;
+float mileage;
+public:
+void setCompanyName(char c[]) { for(int i=0;c[i]!='\0';i++) company_name[i]=c[i]; }
+void setModelName(char m[]) { for(int i=0;m[i]!='\0';i++) model_name[i]=m[i]; }
+void setYear(int y) { year = y; }
+float getMileage() { return mileage; }
+void display() { cout << company_name << " " << model_name << " " << year << " " << getMileage(); }
+void setMileage(float m) { mileage = m; }
+};
+
+int main() {
+Car c;
+c.setCompanyName("Toyota");
+c.setModelName("Corolla");
+c.setYear(2020);
+c.setMileage(15.5);
+c.display();
+return 0;
+}
+</pre>
+
+<div class="output"> Output: Toyota Corolla 2020 15.5 </div>
+        </div>
+    </div>
+
+    <div class="category" id="overload">
+        <h2>Operator Overloading Questions</h2>
+        <div class="program">
+            <h3>Q1: Complex Number Addition</h3>
+<pre>#include <iostream>
+using namespace std;
+
+class Complex {
+    float real, imag;
+public:
+    Complex(float r=0, float i=0) {
+        real = r;
+        imag = i;
+    }
+
+    Complex operator + (Complex c) {
+        return Complex(real + c.real, imag + c.imag);
+    }
+
+    void display() {
+        cout << real << " + " << imag << "i";
+    }
+};</pre>
+<div class="output">Result: Adds two complex numbers.</div>
+<h3>Q2: Fraction Addition</h3>
+<pre>#include <iostream>
+using namespace std;
+
+class Fraction {
+    int num, den;
+public:
+    Fraction(int n=0, int d=1) {
+        num = n;
+        den = d;
+    }
+
+    Fraction operator + (Fraction f) {
+        return Fraction(num*f.den + f.num*den, den*f.den);
+    }
+
+    void display() {
+        cout << num << "/" << den;
+    }
+};</pre>
+<div class="output">Result: Adds two fractions.</div>
+<h3>Q3: Matrix Multiplication</h3>
+<pre>#include <iostream>
+using namespace std;
+
+class Matrix {
+    int a[2][2];
+public:
+    void input() {
+        for(int i=0;i<2;i++)
+            for(int j=0;j<2;j++)
+                cin >> a[i][j];
+    }
+
+    Matrix operator * (Matrix m) {
+        Matrix result;
+        for(int i=0;i<2;i++) {
+            for(int j=0;j<2;j++) {
+                result.a[i][j]=0;
+                for(int k=0;k<2;k++)
+                    result.a[i][j] += a[i][k] * m.a[k][j];
+            }
+        }
+        return result;
+    }
+
+    void display() {
+        for(int i=0;i<2;i++) {
+            for(int j=0;j<2;j++)
+                cout << a[i][j] << " ";
+            cout << endl;
+        }
+    }
+};</pre>
+<div class="output">Result: Multiplies two 2x2 matrices.</div>
+<h3>Q4: String Concatenation</h3>
+<pre>#include <iostream>
+#include <cstring>
+using namespace std;
+
+class String {
+    char str[100];
+public:
+    String(char s[]="") {
+        strcpy(str, s);
+    }
+
+    String operator + (String s) {
+        String temp;
+        strcpy(temp.str, str);
+        strcat(temp.str, s.str);
+        return temp;
+    }
+
+    void display() {
+        cout << str;
+    }
+};</pre>
+<div class="output">Result: Concatenates two strings.</div>
+<h3>Q5: Date Comparison</h3>
+<pre>#include <iostream>
+using namespace std;
+
+class Date {
+    int d, m, y;
+public:
+    Date(int d, int m, int y) {
+        this->d=d; this->m=m; this->y=y;
+    }
+
+    bool operator < (Date dt) {
+        if(y < dt.y) return true;
+        if(y == dt.y && m < dt.m) return true;
+        if(y == dt.y && m == dt.m && d < dt.d) return true;
+        return false;
+    }
+};</pre>
+<div class="output">Result: Compares two dates.</div>
+<h3>Q6: Money Addition</h3>
+<pre>#include <iostream>
+using namespace std;
+
+class Money {
+    int rupees, paise;
+public:
+    Money(int r=0, int p=0) {
+        rupees = r;
+        paise = p;
+    }
+
+    Money operator + (Money m) {
+        Money temp;
+        temp.rupees = rupees + m.rupees;
+        temp.paise = paise + m.paise;
+
+        if(temp.paise >= 100) {
+            temp.rupees++;
+            temp.paise -= 100;
+        }
+        return temp;
+    }
+
+    void display() {
+        cout << rupees << " Rupees " << paise << " Paise";
+    }
+};</pre>
+<div class="output">Result: Adds two money amounts.</div>
+<h3>Q7: Rectangle Equality</h3>
+<pre>#include <iostream>
+using namespace std;
+
+class Rectangle {
+    int l, b;
+public:
+    Rectangle(int l, int b) {
+        this->l=l; this->b=b;
+    }
+
+    bool operator == (Rectangle r) {
+        return (l == r.l && b == r.b);
+    }
+};</pre>
+<div class="output">Result: Checks if two rectangles are equal.</div>
+<h3>Q8: Time Display</h3>
+<pre>#include <iostream>
+using namespace std;
+
+class Time {
+    int h, m;
+public:
+    Time(int h, int m) {
+        this->h=h; this->m=m;
+    }
+
+    friend ostream& operator << (ostream &out, Time t) {
+        if(t.h < 10) out << "0";
+        out << t.h << ":";
+        if(t.m < 10) out << "0";
+        out << t.m;
+        return out;
+    }
+};</pre>
+<div class="output">Result: Displays time in HH:MM format.</div>
+
+
+            
+        </div>
+    </div>
+
+    <div class="category" id="virtual">
+        <h2>Virtual Function Questions</h2>
+        <div class="program">
+
+            <h3>Q1: Abstract Class Animal (sound)</h3>
+<pre>#include &lt;iostream&gt;
+using namespace std;
+
+class Animal {
+public:
+    virtual void sound() = 0;
+};
+
+class Lion : public Animal {
+public:
+    void sound() { cout &lt;&lt; "Lion roars"; }
+};
+
+class Tiger : public Animal {
+public:
+    void sound() { cout &lt;&lt; "Tiger growls"; }
+};</pre>
+<div class="output">Result: Lion and Tiger must implement sound().</div>
+            <h3>Q3: Shape Area & Perimeter</h3>
+<pre>#include &lt;iostream&gt;
+using namespace std;
+
+class Shape {
+public:
+    virtual float calculateArea() = 0;
+    virtual float calculatePerimeter() = 0;
+};
+
+class Circle : public Shape {
+    float r;
+public:
+    Circle(float r) { this-&gt;r = r; }
+    float calculateArea() { return 3.14 * r * r; }
+    float calculatePerimeter() { return 2 * 3.14 * r; }
+};
+
+class Triangle : public Shape {
+    float a, b, c;
+public:
+    Triangle(float a, float b, float c) {
+        this-&gt;a=a; this-&gt;b=b; this-&gt;c=c;
+    }
+    float calculateArea() { return 0.5 * a * b; }
+    float calculatePerimeter() { return a + b + c; }
+};</pre>
+<div class="output">Result: Circle and Triangle calculate area & perimeter.</div>
+            
+
+<h3>ques2: Shape Area & Perimeter</h3>
+<pre>#include &lt;iostream&gt;
+using namespace std;
+
+class Shape {
+public:
+    virtual float calculateArea() = 0;
+    virtual float calculatePerimeter() = 0;
+};
+
+class Circle : public Shape {
+    float r;
+public:
+    Circle(float r) { this-&gt;r = r; }
+    float calculateArea() { return 3.14 * r * r; }
+    float calculatePerimeter() { return 2 * 3.14 * r; }
+};
+
+class Triangle : public Shape {
+    float a, b, c;
+public:
+    Triangle(float a, float b, float c) {
+        this-&gt;a=a; this-&gt;b=b; this-&gt;c=c;
+    }
+    float calculateArea() { return 0.5 * a * b; }
+    float calculatePerimeter() { return a + b + c; }
+};</pre>
+<div class="output">Result: Circle and Triangle calculate area & perimeter.</div>
+<h3>ques3: Bank Account</h3>
+<pre>#include &lt;iostream&gt;
+using namespace std;
+
+class BankAccount {
+public:
+    virtual void deposit() = 0;
+    virtual void withdraw() = 0;
+};
+
+class SavingsAccount : public BankAccount {
+public:
+    void deposit() { cout &lt;&lt; "Deposit in Savings"; }
+    void withdraw() { cout &lt;&lt; "Withdraw from Savings"; }
+};
+
+class CurrentAccount : public BankAccount {
+public:
+    void deposit() { cout &lt;&lt; "Deposit in Current"; }
+    void withdraw() { cout &lt;&lt; "Withdraw from Current"; }
+};</pre>
+<div class="output">Result: Accounts handle deposit and withdraw differently.</div>
+<h3>ques4: Animal eat & sleep</h3>
+<pre>#include &lt;iostream&gt;
+using namespace std;
+
+class Animal {
+public:
+    virtual void eat() = 0;
+    virtual void sleep() = 0;
+};
+
+class Lion : public Animal {
+public:
+    void eat() { cout &lt;&lt; "Lion eats meat"; }
+    void sleep() { cout &lt;&lt; "Lion sleeps in den"; }
+};
+
+class Tiger : public Animal {
+public:
+    void eat() { cout &lt;&lt; "Tiger hunts prey"; }
+    void sleep() { cout &lt;&lt; "Tiger sleeps in jungle"; }
+};
+
+class Deer : public Animal {
+public:
+    void eat() { cout &lt;&lt; "Deer eats grass"; }
+    void sleep() { cout &lt;&lt; "Deer sleeps lightly"; }
+};</pre>
+<div class="output">Result: Each animal behaves differently.</div>
+<h3>Q5: Employee</h3>
+<pre>#include &lt;iostream&gt;
+using namespace std;
+
+class Employee {
+public:
+    virtual void calculateSalary() = 0;
+    virtual void displayInfo() = 0;
+};
+
+class Manager : public Employee {
+public:
+    void calculateSalary() { cout &lt;&lt; "Manager salary = 50000"; }
+    void displayInfo() { cout &lt;&lt; "Manager role"; }
+};
+
+class Programmer : public Employee {
+public:
+    void calculateSalary() { cout &lt;&lt; "Programmer salary = 30000"; }
+    void displayInfo() { cout &lt;&lt; "Programmer role"; }
+};</pre>
+<div class="output">Result: Salary differs by role.</div>
+<h3>Q6: Shape3D</h3>
+<pre>#include &lt;iostream&gt;
+using namespace std;
+
+class Shape3D {
+public:
+    virtual float calculateVolume() = 0;
+    virtual float calculateSurfaceArea() = 0;
+};
+
+class Sphere : public Shape3D {
+    float r;
+public:
+    Sphere(float r){ this-&gt;r=r; }
+    float calculateVolume() { return 4.19 * r * r * r; }
+    float calculateSurfaceArea() { return 4 * 3.14 * r * r; }
+};
+
+class Cube : public Shape3D {
+    float a;
+public:
+    Cube(float a){ this-&gt;a=a; }
+    float calculateVolume() { return a*a*a; }
+    float calculateSurfaceArea() { return 6*a*a; }
+};</pre>
+<div class="output">Result: 3D shapes compute volume & surface area.</div>
+<h3>Q7: Vehicle</h3>
+<pre>#include &lt;iostream&gt;
+using namespace std;
+
+class Vehicle {
+public:
+    virtual void startEngine() = 0;
+    virtual void stopEngine() = 0;
+};
+
+class Car : public Vehicle {
+public:
+    void startEngine() { cout &lt;&lt; "Car starts"; }
+    void stopEngine() { cout &lt;&lt; "Car stops"; }
+};
+
+class Motorcycle : public Vehicle {
+public:
+    void startEngine() { cout &lt;&lt; "Bike starts"; }
+    void stopEngine() { cout &lt;&lt; "Bike stops"; }
+};</pre>
+<div class="output">Result: Vehicles start/stop differently.</div>
+<h3>Q8: Person</h3>
+<pre>#include &lt;iostream&gt;
+using namespace std;
+
+class Person {
+public:
+    virtual void eat() = 0;
+    virtual void exercise() = 0;
+};
+
+class Athlete : public Person {
+public:
+    void eat() { cout &lt;&lt; "Healthy diet"; }
+    void exercise() { cout &lt;&lt; "Regular training"; }
+};
+
+class LazyPerson : public Person {
+public:
+    void eat() { cout &lt;&lt; "Junk food"; }
+    void exercise() { cout &lt;&lt; "No exercise"; }
+};</pre>
+<div class="output">Result: Lifestyle differs.</div>
+<h3>Q19: Instrument</h3>
+<pre>#include &lt;iostream&gt;
+using namespace std;
+
+class Instrument {
+public:
+    virtual void play() = 0;
+    virtual void tune() = 0;
+};
+
+class Glockenspiel : public Instrument {
+public:
+    void play() { cout &lt;&lt; "Play Glockenspiel"; }
+    void tune() { cout &lt;&lt; "Tune Glockenspiel"; }
+};
+
+class Violin : public Instrument {
+public:
+    void play() { cout &lt;&lt; "Play Violin"; }
+    void tune() { cout &lt;&lt; "Tune Violin"; }
+};</pre>
+<div class="output">Result: Instruments behave differently.</div>
+<h3>Q11: Shape2D</h3>
+<pre>#include &lt;iostream&gt;
+using namespace std;
+
+class Shape2D {
+public:
+    virtual void draw() = 0;
+    virtual void resize() = 0;
+};
+
+class Rectangle : public Shape2D {
+public:
+    void draw() { cout &lt;&lt; "Draw Rectangle"; }
+    void resize() { cout &lt;&lt; "Resize Rectangle"; }
+};
+
+class Circle : public Shape2D {
+public:
+    void draw() { cout &lt;&lt; "Draw Circle"; }
+    void resize() { cout &lt;&lt; "Resize Circle"; }
+};</pre>
+<div class="output">Result: Shapes drawn & resized.</div>
+<h3>Q11: GeometricShape</h3>
+<pre>#include &lt;iostream&gt;
+using namespace std;
+
+class GeometricShape {
+public:
+    virtual float area() = 0;
+    virtual float perimeter() = 0;
+};
+
+class Triangle : public GeometricShape {
+public:
+    float area() { return 0.5*5*4; }
+    float perimeter() { return 5+4+3; }
+};
+
+class Square : public GeometricShape {
+public:
+    float area() { return 4*4; }
+    float perimeter() { return 4*4; }
+};</pre>
+<div class="output">Result: Shapes compute area & perimeter.</div>
+<h3>Q12: Bird</h3>
+<pre>#include <iostream>
+using namespace std;
+
+class Bird {
+public:
+    virtual void fly() = 0;
+    virtual void makeSound() = 0;
+};
+
+class Eagle : public Bird {
+public:
+    void fly() { cout << "Eagle flies high"; }
+    void makeSound() { cout << "Eagle screeches"; }
+};
+
+class Hawk : public Bird {
+public:
+    void fly() { cout << "Hawk glides"; }
+    void makeSound() { cout << "Hawk cries"; }
+};</pre>
+<div class="output">Result: Birds behave differently.</div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="category" id="inheritance">
+        <h2>Inheritance Questions</h2>
+        <div class="program">
+            <h3>Q1: Animal Sound Override</h3>
+<pre>#include <iostream>
+using namespace std;
+
+class Animal {
+public:
+    void makeSound() {
+        cout << "Animal makes sound";
+    }
+};
+
+class Cat : public Animal {
+public:
+    void makeSound() {
+        cout << "Cat barks";
+    }
+};</pre>
+<div class="output">Result: Cat overrides makeSound().</div>
+<h3>Q2: Vehicle Drive Override</h3>
+<pre>#include <iostream>
+using namespace std;
+
+class Vehicle {
+public:
+    void drive() {
+        cout << "Driving vehicle";
+    }
+};
+
+class Car : public Vehicle {
+public:
+    void drive() {
+        cout << "Repairing a car";
+    }
+};</pre>
+<div class="output">Result: Car overrides drive().</div>
+<h3>Q3: Rectangle Area</h3>
+<pre>#include <iostream>
+using namespace std;
+
+class Shape {
+public:
+    virtual int getArea() {
+        return 0;
+    }
+};
+
+class Rectangle : public Shape {
+    int l, b;
+public:
+    Rectangle(int l, int b) {
+        this->l=l; this->b=b;
+    }
+
+    int getArea() {
+        return l * b;
+    }
+};</pre>
+<div class="output">Result: Rectangle calculates area.</div>
+<h3>Q4: HR Manager</h3>
+<pre>#include <iostream>
+using namespace std;
+
+class Employee {
+public:
+    void work() {
+        cout << "Employee working";
+    }
+    int getSalary() {
+        return 20000;
+    }
+};
+
+class HRManager : public Employee {
+public:
+    void work() {
+        cout << "HR managing employees";
+    }
+
+    void addEmployee() {
+        cout << "New employee added";
+    }
+};</pre>
+<div class="output">Result: HRManager overrides work() and adds new method.</div>
+<h3>Q5: Savings Account Withdraw Rule</h3>
+<pre>#include <iostream>
+using namespace std;
+
+class BankAccount {
+protected:
+    int balance;
+public:
+    BankAccount(int b) { balance = b; }
+
+    void deposit(int amt) { balance += amt; }
+
+    virtual void withdraw(int amt) {
+        balance -= amt;
+    }
+};
+
+class SavingsAccount : public BankAccount {
+public:
+    SavingsAccount(int b): BankAccount(b) {}
+
+    void withdraw(int amt) {
+        if(balance - amt < 100)
+            cout << "Minimum balance required";
+        else
+            balance -= amt;
+    }
+};</pre>
+<div class="output">Result: Prevents withdrawal below 100 balance.</div>
+<h3>Q6: Cheetah Movement</h3>
+<pre>#include <iostream>
+using namespace std;
+
+class Animal {
+public:
+    void move() {
+        cout << "Animal moves";
+    }
+};
+
+class Cheetah : public Animal {
+public:
+    void move() {
+        cout << "Cheetah runs fast";
+    }
+};</pre>
+<div class="output">Result: Cheetah overrides move().</div>
+<h3>Q7: Employee with ID</h3>
+<pre>#include <iostream>
+using namespace std;
+
+class Person {
+public:
+    string firstName, lastName;
+
+    string getFirstName() { return firstName; }
+    virtual string getLastName() { return lastName; }
+};
+
+class Employee : public Person {
+    int empId;
+    string jobTitle;
+public:
+    Employee(string fn, string ln, int id, string jt) {
+        firstName=fn; lastName=ln; empId=id; jobTitle=jt;
+    }
+
+    int getEmployeeId() { return empId; }
+
+    string getLastName() {
+        return lastName + " (" + jobTitle + ")";
+    }
+};</pre>
+<div class="output">Result: Employee extends Person and overrides last name.</div>
+<h3>Q8: Circle Area & Perimeter</h3>
+<pre>#include <iostream>
+using namespace std;
+
+class Shape {
+public:
+    virtual float getArea() { return 0; }
+    virtual float getPerimeter() { return 0; }
+};
+
+class Circle : public Shape {
+    float r;
+public:
+    Circle(float r) { this->r=r; }
+
+    float getArea() { return 3.14 * r * r; }
+    float getPerimeter() { return 2 * 3.14 * r; }
+};</pre>
+<div class="output">Result: Circle calculates area & perimeter.</div>
+<h3>Q9: Vehicle Hierarchy</h3>
+<pre>#include <iostream>
+using namespace std;
+
+class Vehicle {
+public:
+    string make, model, fuel;
+    int year;
+
+    virtual void fuelEfficiency() {
+        cout << "Fuel efficiency varies";
+    }
+
+    virtual void maxSpeed() {
+        cout << "Max speed varies";
+    }
+};
+
+class Car : public Vehicle {
+public:
+    void fuelEfficiency() { cout << "Car: 15 km/l"; }
+    void maxSpeed() { cout << "Car: 180 km/h"; }
+};
+
+class Truck : public Vehicle {
+public:
+    void fuelEfficiency() { cout << "Truck: 8 km/l"; }
+    void maxSpeed() { cout << "Truck: 120 km/h"; }
+};
+
+class Motorcycle : public Vehicle {
+public:
+    void fuelEfficiency() { cout << "Bike: 40 km/l"; }
+    void maxSpeed() { cout << "Bike: 120 km/h"; }
+};</pre>
+<div class="output">Result: Different vehicles have different properties.</div>
+<h3>Q10: Employee Hierarchy</h3>
+<pre>#include <iostream>
+using namespace std;
+
+class Employee {
+public:
+    string name, address, jobTitle;
+    int salary;
+
+    virtual void calculateBonus() {
+        cout << "Bonus varies";
+    }
+
+    virtual void performanceReport() {
+        cout << "Performance report";
+    }
+};
+
+class Manager : public Employee {
+public:
+    void calculateBonus() { cout << "Manager bonus: High"; }
+};
+
+class Developer : public Employee {
+public:
+    void calculateBonus() { cout << "Developer bonus: Medium"; }
+};
+
+class Programmer : public Employee {
+public:
+    void calculateBonus() { cout << "Programmer bonus: Low"; }
+};</pre>
+<div class="output">Result: Different employee roles have different bonuses.</div>
+        </div>
+    </div>
+
+    
+
+    <div class="category" id="file">
+        <h2>File Handling Questions</h2>
+        <div class="program">
+           <h3>Q1: Create & Write to a Text File</h3>
+<pre>#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    ofstream file("example.txt");
+    if(file.is_open()) {
+        file << "Hello, this is a sample text.";
+        file.close();
+        cout << "Text written successfully.";
+    }
+    return 0;
+}</pre>
+<div class="output">Result: Creates a text file and writes text into it.</div>
+<h3>Q2: Read & Display Text File</h3>
+<pre>#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int main() {
+    ifstream file("example.txt");
+    string line;
+    if(file.is_open()) {
+        while(getline(file, line)) {
+            cout << line << endl;
+        }
+        file.close();
+    }
+    return 0;
+}</pre>
+<div class="output">Result: Displays contents of a text file.</div>
+<h3>Q3: Count Number of Lines</h3>
+<pre>#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int main() {
+    ifstream file("example.txt");
+    string line;
+    int count = 0;
+    while(getline(file, line)) count++;
+    cout << "Number of lines: " << count;
+    return 0;
+}</pre>
+<div class="output">Result: Counts total lines in the file.</div>
+<h3>Q4: Count Number of Words</h3>
+<pre>#include <iostream>
+#include <fstream>
+#include <sstream>
+using namespace std;
+
+int main() {
+    ifstream file("example.txt");
+    string line, word;
+    int count = 0;
+    while(getline(file, line)) {
+        stringstream ss(line);
+        while(ss >> word) count++;
+    }
+    cout << "Number of words: " << count;
+    return 0;
+}</pre>
+<div class="output">Result: Counts words in the file.</div>
+<h3>Q5: Copy File Contents</h3>
+<pre>#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int main() {
+    ifstream src("example.txt");
+    ofstream dest("copy.txt");
+    string line;
+    while(getline(src, line)) {
+        dest << line << endl;
+    }
+    cout << "File copied successfully.";
+    return 0;
+}</pre>
+<div class="output">Result: Copies content from one file to another.</div>
+<h3>Q6: Find & Replace Word</h3>
+<pre>#include <iostream>
+#include <fstream>
+#include <sstream>
+using namespace std;
+
+int main() {
+    ifstream file("example.txt");
+    string content, line;
+    while(getline(file, line)) {
+        content += line + "\n";
+    }
+    file.close();
+
+    size_t pos = content.find("sample");
+    if(pos != string::npos) content.replace(pos, 6, "test");
+
+    ofstream out("example.txt");
+    out << content;
+    cout << "Word replaced successfully.";
+    return 0;
+}</pre>
+<div class="output">Result: Replaces a specific word in the file.</div>
+<h3>Q7: Append Data to File</h3>
+<pre>#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    ofstream file("example.txt", ios::app);
+    file << "\nAppending new text!";
+    file.close();
+    cout << "Text appended successfully.";
+    return 0;
+}</pre>
+<div class="output">Result: Adds new data at the end of the file.</div>
+<h3>Q8: Sort Lines Alphabetically</h3>
+<pre>#include <iostream>
+#include <fstream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    ifstream file("example.txt");
+    string line;
+    vector<string> lines;
+    while(getline(file, line)) lines.push_back(line);
+    sort(lines.begin(), lines.end());
+    ofstream out("example.txt");
+    for(auto &l: lines) out << l << endl;
+    cout << "File lines sorted.";
+    return 0;
+}</pre>
+<div class="output">Result: Lines in the file sorted alphabetically.</div>
+<h3>Q9: Merge Multiple Files</h3>
+<pre>#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    ofstream out("merged.txt");
+    for(int i=1; i<=3; i++) {
+        ifstream in("file"+to_string(i)+".txt");
+        string line;
+        while(getline(in, line)) out << line << endl;
+        in.close();
+    }
+    cout << "Files merged into merged.txt";
+    return 0;
+}</pre>
+<div class="output">Result: Combines multiple files into one.</div>
+<h3>Q10: Split Large File</h3>
+<pre>#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int main() {
+    ifstream file("large.txt");
+    int linesPerFile = 5, fileCount = 1, lineCount = 0;
+    ofstream out("part"+to_string(fileCount)+".txt");
+    string line;
+    while(getline(file, line)) {
+        if(lineCount == linesPerFile) {
+            out.close();
+            fileCount++;
+            out.open("part"+to_string(fileCount)+".txt");
+            lineCount = 0;
+        }
+        out << line << endl;
+        lineCount++;
+    }
+    cout << "File split into " << fileCount << " parts.";
+    return 0;
+}</pre>
+<div class="output">Result: Splits a large file into smaller files.</div>
+<h3>Q11: Search String in File</h3>
+<pre>#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int main() {
+    ifstream file("example.txt");
+    string line, search = "text";
+    int lineNo = 1;
+    while(getline(file, line)) {
+        if(line.find(search) != string::npos)
+            cout << "Found on line: " << lineNo << endl;
+        lineNo++;
+    }
+    return 0;
+}</pre>
+<div class="output">Result: Displays line number(s) containing the string.</div>
+<h3>Q12: Encrypt File</h3>
+<pre>#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    ifstream file("example.txt");
+    ofstream enc("encrypted.txt");
+    char ch;
+    while(file.get(ch)) enc.put(ch + 1); // simple shift encryption
+    cout << "File encrypted.";
+    return 0;
+}</pre>
+<div class="output">Result: Encrypts text using simple algorithm.</div>
+<h3>Q13: Decrypt File</h3>
+<pre>#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    ifstream enc("encrypted.txt");
+    ofstream dec("decrypted.txt");
+    char ch;
+    while(enc.get(ch)) dec.put(ch - 1);
+    cout << "File decrypted.";
+    return 0;
+}</pre>
+<div class="output">Result: Decrypts text encrypted using above method.</div>
+<h3>Q14: Read CSV File</h3>
+<pre>#include <iostream>
+#include <fstream>
+#include <sstream>
+using namespace std;
+
+int main() {
+    ifstream file("data.csv");
+    string line, cell;
+    while(getline(file, line)) {
+        stringstream ss(line);
+        while(getline(ss, cell, ',')) cout << cell << "\t";
+        cout << endl;
+    }
+    return 0;
+}</pre>
+<div class="output">Result: Displays CSV content in tabular form.</div>
+<h3>Q15: Average of Numbers in File</h3>
+<pre>#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    ifstream file("numbers.txt");
+    double num, sum=0;
+    int count=0;
+    while(file >> num) { sum += num; count++; }
+    cout << "Average: " << sum / count;
+    return 0;
+}</pre>
+<div class="output">Result: Calculates average of numbers in file.</div>
+<h3>Q16: Student Binary File Management</h3>
+<pre>#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+struct Student {
+    int rollno;
+    char name[50];
+    float marks;
+    char mobileno[15];
+};
+
+void insertRecord() {
+    ofstream file("students.dat", ios::binary|ios::app);
+    Student s = {1,"John",90,"1234567890"};
+    file.write((char*)&s, sizeof(s));
+    file.close();
+    cout << "Record inserted.";
+}
+</pre>
+<div class="output">Result: Stores and manages student records in binary file.</div>
+        </div>
+    </div>
+
+</main>
+
+<script>
+    function showCategory(categoryId) {
+        // Hide all
+        const categories = document.querySelectorAll('.category');
+        categories.forEach(cat => cat.classList.remove('active'));
+        
+        // Show target
+        const selected = document.getElementById(categoryId);
+        if (selected) selected.classList.add('active');
+
+        // Toggle button style
+        const buttons = document.querySelectorAll('nav button');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        document.getElementById('btn-' + categoryId).classList.add('active');
+    }
+    // Set default category
+     window.onload = () => showCategory('intro');
+</script>
+
+</body>
+</html>
